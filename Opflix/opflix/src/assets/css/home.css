@@ -19,8 +19,10 @@ li{
     font-family: 'Agency FB';
     color: #DB202C;
     font-size:30px;
+    list-style: none;
     
 }
+
 .nav{
     margin: 0;
     padding: 0 auto;

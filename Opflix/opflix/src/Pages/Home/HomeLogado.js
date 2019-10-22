@@ -30,7 +30,7 @@ import { Link } from "react-router-dom";
   </div>
 
   <div className="Lancamentos">
-    <h2>Lancamentos</h2>
+  <h2>Lancamentos</h2>
   </div>
 
   <div className="sessaoDaTarde">

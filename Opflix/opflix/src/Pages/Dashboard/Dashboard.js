@@ -13,7 +13,11 @@ export default class dashboard extends Component {
         this.state = {
             lista: [],
             ListaUsuarios: [],
-            nome: ""
+            nome: "",
+            nomeu: "",
+            email: "",
+            senha: "",
+            permissao: ""
         }
     }
 
@@ -23,9 +27,9 @@ export default class dashboard extends Component {
         Axios.get("http://localhost:5000/api/categorias", {
             headers: { 'Authorization': 'Bearer ' + localStorage.getItem('usuario-opflix') }
         })
-        .then(Response => {
-            this.setState({ lista: Response.data })
-        })
+            .then(Response => {
+                this.setState({ lista: Response.data })
+            })
     }
     componentDidMount() {
         this.listarCategorias();
@@ -38,10 +42,24 @@ export default class dashboard extends Component {
         this.setState({ nome: event.target.value })
     }
 
-    CadastrarCategoria = (event) => {
-        event.preventDefault();
 
-        Axios.post("http://localhost:5000/api/Categorias/", {
+    EstadoNomeUsuario = (event) => {
+        this.setState({ nomeu: event.target.value })
+    }
+    EstadoEmail = (event) => {
+        this.setState({ email: event.target.value })
+    }
+    EstadoSenha = (event) => {
+        this.setState({ senha: event.target.value })
+    }
+    Estadopermissao = (event) => {
+        this.setState({ permissao: event.target.value })
+    }
+
+    CadastrarCategoria = (event) => {
+
+
+        Axios.post("http://localhost:5000/api/usuarios/CadastrarAdmin", {
 
             categoria: this.state.nome,
         }, {
@@ -63,6 +81,29 @@ export default class dashboard extends Component {
                 this.setState({ ListaUsuarios: Response.data })
             })
     }
+    CadastrarUsuario = (event) => {
+
+        event.preventDefault();
+
+        Axios.post("http://localhost:5000/api/usuarios", {
+            nome: this.state.nomeu,
+            email: this.state.email,
+            senha: this.state.senha,
+            permissao: this.state.permissao
+        })
+            .then(data => {
+                if (data.status === 200) {
+                    console.log('cadastrou')
+                } else {
+                    console.log('ero')
+                }
+            })
+
+    }
+
+
+
+
 
 
 
@@ -96,13 +137,26 @@ export default class dashboard extends Component {
 
                     </div>
                     <div>
-
                         <form onSubmit={this.CadastrarCategoria}>
                             <h4>Cadastrar Categoria</h4>
                             <input type="text"
                                 value={this.state.nome}
                                 onChange={this.EstadoNome}
                             />
+                            <button type="submit">Cadastrar</button>
+                        </form>
+                    </div>
+
+                    <div>
+
+                        <form onSubmit={this.CadastrarUsuario}>
+                            <h4>Cadastrar usuario</h4>
+                            <input type="text"      placeholder="Nome"      value={this.state.nomeu}        onChange={this.EstadoNomeUsuario} />
+                            <input type="text"      placeholder="email"     value={this.state.email}        onChange={this.EstadoEmail} />
+                            <input type="password"  placeholder="senha"     value={this.state.senha}        onChange={this.EstadoSenha} />
+                            <input type="text"      placeholder="permissao" value={this.state.permissao}    onChange={this.Estadopermissao} />
+
+
 
 
                             <button type="submit">Cadastrar</button>
@@ -141,3 +195,7 @@ export default class dashboard extends Component {
         )
     }
 }
+
+
+
+

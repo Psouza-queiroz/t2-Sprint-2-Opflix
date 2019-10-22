@@ -84,6 +84,8 @@ export default class Login extends Component {
 
                 />
                 <br />
+                <Link to="/cadastrar"><p>Cadastrar</p></Link>
+
                 <button id="btn" type="submit">Login</button>
                 <p
                   className="text__login"

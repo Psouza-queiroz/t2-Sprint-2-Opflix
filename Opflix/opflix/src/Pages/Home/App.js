@@ -21,7 +21,7 @@ class App extends Component{
     <div className="App">
       <div className="nav">
         <ul>
-          <li>Lancamentos</li>
+          <Link to={"login"}><li>Lancamentos</li></Link>
         </ul>
     
     <img src={logo} width="100px" height="50%" />

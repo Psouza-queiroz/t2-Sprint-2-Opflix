@@ -30,7 +30,9 @@ class Cadastrar extends Component {
     Axios.post("http://localhost:5000/api/usuarios", {
       nome: this.state.nome,
       email: this.state.email,
-      senha: this.state.senha
+      senha: this.state.senha,
+      permissao:'Usuario'
+    
 
     })
 
