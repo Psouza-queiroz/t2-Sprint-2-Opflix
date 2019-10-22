@@ -1,0 +1,127 @@
+*{
+margin: 0;
+padding: 0;
+}
+
+body{
+    background-color: #f6f6f6;
+}
+
+
+ul{
+
+    list-style-type: none;
+    margin: 0;  
+    padding: 0;
+}
+li{
+    text-decoration: none;
+    font-family: 'Agency FB';
+    color: #DB202C;
+    font-size:30px;
+    
+}
+.nav{
+    margin: 0;
+    padding: 0 auto;
+
+    background-color: black;
+    box-shadow: #DB202C 0px 0px 10px 1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.login{
+display: flex;
+flex-direction: column;
+}
+
+a{
+    text-decoration: none;
+    color: #DB202C
+}
+
+
+.caixa{
+    width: 300px;
+    height: 380px    ;
+    border: 150px black; 
+    margin: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.caixa:hover{
+    box-shadow: 0 32px 16px 0 rgba(0, 0, 0, 0.452);
+}
+.sessaoDaTarde{
+    display: flex;
+    justify-content: space-between;
+}
+.butao{
+    border-radius: 50%;
+    height: 49.5px;
+    width: 49.5px;
+    margin-top:6em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.582);
+    outline: 0;
+    border: none;
+    padding: auto;
+    margin: auto;
+}
+.butao:hover{
+    cursor: pointer;
+    box-shadow: 0 16px 12px 0 rgba(0, 0, 0, 0.534);
+}
+.pequeRoda{
+    background-color: black;
+}
+.pequeRoda h2{
+    color: #DB202C;
+    font-family: 'Agency FB';
+}
+p{
+    color: #DB202C;
+    font-family: 'Agency FB';
+    font-size: 20px;
+}
+
+
+::-webkit-scrollbar {
+    width: 11px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 1px 2px 5px black;     
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #DB202C; 
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #DB202C; 
+  }
+
+.Lancamentos {
+    width:100%;
+}
+
+.Lancamentos h2,.FilmesSeries h2{
+    margin:1em 45%;
+    border-bottom:  3px #DB202C solid;
+    width:fit-content; 
+}
+.principal{
+    display: flex;
+    width: 300px;
+    justify-content: space-around;
+}
+
+
