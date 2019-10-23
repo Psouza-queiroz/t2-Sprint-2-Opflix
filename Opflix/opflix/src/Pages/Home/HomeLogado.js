@@ -35,10 +35,7 @@ import { Link } from "react-router-dom";
 
   <div className="sessaoDaTarde">
 
-    <button className="butao">
-      direito
-    </button>
-
+  
 
     <div className="caixa">
       <a href="https://www.youtube.com/watch?v=gUTtJjV852c&t=19s">
@@ -55,9 +52,7 @@ import { Link } from "react-router-dom";
 
     </div>
 
-    <button className="butao">
-      direito
-    </button>
+
   </div>
 
   <div className="FilmesSeries">
@@ -66,9 +61,7 @@ import { Link } from "react-router-dom";
 
   <div className="sessaoDaTarde">
 
-    <button className="butao">
-      direito
-    </button>
+ 
 
     <div className="caixa">
 
@@ -82,9 +75,7 @@ import { Link } from "react-router-dom";
 
 
     </div>
-    <button className="butao">
-      direito
-    </button>
+   
   </div>
   <div className="pequeRoda">
 

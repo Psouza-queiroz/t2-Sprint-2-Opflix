@@ -4,6 +4,7 @@ import '../../assets/css/dashfilmes.css'
 
 import { Link } from "react-router-dom";
 import Axios from 'axios';
+import { elementType } from 'prop-types';
 
 
 
@@ -11,15 +12,20 @@ export default class dashboard extends Component {
     constructor() {
         super()
         this.state = {
-            lista: [],
-            nome:"",
-            sinopse:"",
-            duracaoMin:"",
-            dataDeLancamento:"",
-            Categoria:"",
-            Tipo:"",
-            Classificacao1:"",
+            listaCategoria:[],
+            listaTipos:[],
+            listaClassificacao:[],
             
+            lista: [],
+            nome: "",
+            sinopse: "",
+            duracaoMin: "",
+            dataDeLancamento: "",
+            Categoria: "",
+            Tipo: "",
+            classificacao: "",
+            Classificacao1: ""
+
         }
     }
     EstadoNome = (event) => {
@@ -33,17 +39,21 @@ export default class dashboard extends Component {
     }
     EstadodataDeLancamento = (event) => {
         this.setState({ dataDeLancamento: event.target.value })
+
     }
     EstadoCategoria = (event) => {
         this.setState({ Categoria: event.target.value })
     }
+    EstadTipos = (event) => {
+        this.setState({ Tipo: event.target.value })
+    }
+    EstadoClassificacao = (event) => {
+        this.setState({ Classificacao1: event.target.value })
+    }
     EstadoTipo = (event) => {
         this.setState({ Tipo: event.target.value })
     }
-    EstadoClassificacao1 = (event) => {
-        this.setState({ Classificacao1: event.target.value })
-        console.log(this.state)
-    }
+    
 
 
     listarLancamentos = () => {
@@ -53,37 +63,69 @@ export default class dashboard extends Component {
             .then(Response => {
                 this.setState({ lista: Response.data })
             })
-        }
-
-        componentDidMount(){
-            this.listarLancamentos();
-        }
-
-        CadastrarLancamento = (event) =>{
-            event.preventDefault();
-            console.log('chegou')
-            Axios.post("http://localhost:5000/api/Lancamentos", {
-                nome:this.state.nome,
-                sinopse:this.state.sinopse,
-                duracaoMin:Number(this.state.duracaoMin),
-                iddataDeLancamento:(this.state.duracaoMin),
-                idCategoria:Number(this.state.Categoria),
-                idTipo:Number(this.state.Tipo),
-                idClassificacao:Number(this.state.Classificacao1),
-            },{
-                
-                headers: { 'Authorization' : 'Bearer ' + localStorage.getItem('usuario-opflix') },
-         
-        })
-      
-        .then(data => {
-            if (data.status === 200) {
-                console.log('cadastrou')
-            } else {
-                console.log('ero')
-            }
-        })
     }
+
+    listarTipos = () => {
+
+        Axios.get("http://localhost:5000/api/Tipos", {
+        })
+            .then(Response => {
+                this.setState({ listaTipos: Response.data })
+            })
+    }   
+
+    listarClassificacao = () => {
+
+        Axios.get("http://localhost:5000/api/Classificacao", {
+        })
+            .then(Response => {
+                this.setState({ listaClassificacao: Response.data })
+            })
+    }   
+
+    listarCategorias = () => {
+
+        Axios.get("http://localhost:5000/api/categorias", {
+            headers: { 'Authorization': 'Bearer ' + localStorage.getItem('usuario-opflix') }
+        })
+            .then(Response => {
+                this.setState({ listaCategoria: Response.data })
+            })
+    }
+
+    componentDidMount() {
+        this.listarLancamentos();
+        this.listarCategorias();
+        this.listarTipos();
+        this.listarClassificacao();
+    }
+
+    CadastrarLancamento = (event) => {
+        event.preventDefault();
+        console.log('chegou')
+        Axios.post("http://localhost:5000/api/Lancamentos", {
+            nome: this.state.nome,
+            sinopse: this.state.sinopse,
+            duracaoMin: Number(this.state.duracaoMin),
+            DataDeLancamento: (this.state.dataDeLancamento),
+            idCategoria: Number(this.state.Categoria),
+            idTipo: Number(this.state.Tipo),
+            idClassificacao: Number(this.state.Classificacao1),
+        }, {
+
+                headers: { 'Authorization': 'Bearer ' + localStorage.getItem('usuario-opflix') },
+
+            })
+
+            .then(data => {
+                if (data.status === 200) {
+                    console.log('cadastrou')
+                } else {
+                    console.log('ero')
+                }
+            })
+    }
+    
 
 
 
@@ -120,8 +162,8 @@ export default class dashboard extends Component {
                                             <td>{element.sinopse}</td>
                                             <td>{element.duracaoMin}</td>
                                             <td>{element.dataDeLancamento}</td>
-                                            <td>{element.idCategoriaNavigation === undefined ? 'Null' :  element.idCategoriaNavigation.categoria}</td>
-                                            <td>{element.idTipoNavigation === undefined ? 'Null' :  element.idTipoNavigation.tipo}</td>
+                                            <td>{element.idCategoriaNavigation === undefined ? 'Null' : element.idCategoriaNavigation.categoria}</td>
+                                            <td>{element.idTipoNavigation === undefined ? 'Null' : element.idTipoNavigation.tipo}</td>
                                             <td>{element.idClassificacaoNavigation === undefined ? 'Null' : element.idClassificacaoNavigation.classificacao1}</td>
                                         </tr>
                                     );
@@ -129,23 +171,60 @@ export default class dashboard extends Component {
                             </tbody>
                         </table>
                         <div>
-                        <form onSubmit={this.CadastrarLancamento}>
-                            <h4>Cadastrar Lancamento</h4>
-                            <input type="text"      placeholder="Nome"       value={this.state.nome}              onChange={this.EstadoNome}/>
-                            <input type="text"      placeholder="Sinopse"      value={this.state.sinopse}           onChange={this.Estadosinopse}/>
-                            <input type="number"    placeholder="Duraçao"      value={this.state.duracaoMin}        onChange={this.EstadoduracaoMin}/>
-                            <input type="text"      placeholder="data"          value={this.state.dataDeLancamento}  onChange={this.EstadodataDeLancamento}/>
-                            <input type="text"      placeholder="Categoria"      value={this.state.Categoria}         onChange={this.EstadoCategoria}/>
-                            <input type="text"      placeholder="Tipo"          value={this.state.Tipo}              onChange={this.EstadoTipo}/>
-                            <input type="text"      placeholder="Classificaco"      value={this.state.Classificacao1}    onChange={this.EstadoClassificacao1}/>
-                            
-                            <button type="submit">Cadastrar</button>
-                        </form>
-                    </div>
-                    </div>
-                   
+                            <form onSubmit={this.CadastrarLancamento}>
+                                <h4>Cadastrar Lancamento</h4>
+                                <input type="text"
+                                    placeholder="Nome"
+                                    value={this.state.nome}
+                                    onChange={this.EstadoNome} />
+                                <input type="text"
+                                    placeholder="Sinopse"
+                                    value={this.state.sinopse}
+                                    onChange={this.Estadosinopse} />
+                                <input type="number"
+                                    placeholder="Duraçao"
+                                    value={this.state.duracaoMin}
+                                    onChange={this.EstadoduracaoMin} />
+                                <input type="text"
+                                    placeholder="aaaa-mm-dd"
+                                    value={this.state.dataDeLancamento}
+                                    onChange={this.EstadodataDeLancamento} 
+                                    />
+                               <select name="Categoria" onChange={this.EstadoCategoria}  >
+                                   <option selected disabled value="0">Selecione A categoria</option>
+                                   {
+                                       this.state.listaCategoria.map(element =>  
+                                        {
+                                            return(<option value={element.idCategoria}>{element.categoria}</option>)
+                                        })
+                                   }
+                               </select>
+                               <select name="Tipos" onChange={this.Estadotipo}  >
+                                   <option selected disabled value="0">Selecione o Tipos</option>
+                                   {
+                                       this.state.listaTipos.map(element =>  
+                                        {
+                                            return(<option value={element.idtipo}>{element.tipo}</option>)
+                                        })
+                                   }
+                               </select>
+                               <select name="Classificacao" onChange={this.EstadoClassificacao}  >
+                                   <option selected disabled value="0">Selecione A Classificacao</option>
+                                   {
+                                       this.state.listaClassificacao.map(element =>  
+                                        {
+                                            return(<option value={element.idClassificacao}>{element.classificacao1}</option>)
+                                        })
+                                   }
+                               </select>
 
-        
+                                <button type="submit">Cadastrar</button>
+                            </form>
+                        </div>
+                    </div>
+
+
+
 
                 </div>
 

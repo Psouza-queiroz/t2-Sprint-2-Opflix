@@ -57,10 +57,10 @@ export default class dashboard extends Component {
     }
 
     CadastrarCategoria = (event) => {
+        event.preventDefault()
 
-
-        Axios.post("http://localhost:5000/api/usuarios/CadastrarAdmin", {
-
+        Axios.post("http://localhost:5000/api/categorias", {
+        
             categoria: this.state.nome,
         }, {
                 headers: { 'Authorization': 'Bearer ' + localStorage.getItem('usuario-opflix') }

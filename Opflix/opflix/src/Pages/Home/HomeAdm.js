@@ -17,12 +17,12 @@ function Adm() {
       <div className="nav">
         <div className="principal">
 
-        <ul>
-        <Link to="/dashboardfilme"><li>Lancamentos</li></Link>
-        </ul>
-        <ul>
-          <Link to="/dashboard"><li>Categorias</li></Link>
-        </ul>
+          <ul>
+            <Link to="/dashboardfilme"><li>Lancamentos</li></Link>
+          </ul>
+          <ul>
+            <Link to="/dashboard"><li>Categorias</li></Link>
+          </ul>
         </div>
 
         <img src={logo} width="100px" height="50%" />
@@ -42,9 +42,7 @@ function Adm() {
 
       <div className="sessaoDaTarde">
 
-        <button className="butao">
-          direito
-    </button>
+
 
 
         <div className="caixa">
@@ -62,9 +60,7 @@ function Adm() {
 
         </div>
 
-        <button className="butao">
-          direito
-    </button>
+
       </div>
 
       <div className="FilmesSeries">
@@ -73,9 +69,6 @@ function Adm() {
 
       <div className="sessaoDaTarde">
 
-        <button className="butao">
-          direito
-    </button>
 
         <div className="caixa">
 
@@ -89,9 +82,7 @@ function Adm() {
 
 
         </div>
-        <button className="butao">
-          direito
-    </button>
+
       </div>
       <div className="pequeRoda">
 

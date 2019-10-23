@@ -13,15 +13,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center
+   
     
     
 }
 .meio{
-   display: flex;
-   justify-content: center;
-  align-items: center;
-  font-family: 'Agency FB';
+        display: flex;
+        justify-content: center;
+       
+        font-family: 'Agency FB';
   
     
 }
