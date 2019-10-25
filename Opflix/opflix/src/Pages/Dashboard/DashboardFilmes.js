@@ -12,10 +12,10 @@ export default class dashboard extends Component {
     constructor() {
         super()
         this.state = {
-            listaCategoria:[],
-            listaTipos:[],
-            listaClassificacao:[],
-            
+            listaCategoria: [],
+            listaTipos: [],
+            listaClassificacao: [],
+
             lista: [],
             nome: "",
             sinopse: "",
@@ -44,16 +44,14 @@ export default class dashboard extends Component {
     EstadoCategoria = (event) => {
         this.setState({ Categoria: event.target.value })
     }
-    EstadTipos = (event) => {
-        this.setState({ Tipo: event.target.value })
-    }
     EstadoClassificacao = (event) => {
         this.setState({ Classificacao1: event.target.value })
     }
     EstadoTipo = (event) => {
         this.setState({ Tipo: event.target.value })
+        console.log(this.state.Tipo)
     }
-    
+
 
 
     listarLancamentos = () => {
@@ -72,7 +70,7 @@ export default class dashboard extends Component {
             .then(Response => {
                 this.setState({ listaTipos: Response.data })
             })
-    }   
+    }
 
     listarClassificacao = () => {
 
@@ -81,7 +79,7 @@ export default class dashboard extends Component {
             .then(Response => {
                 this.setState({ listaClassificacao: Response.data })
             })
-    }   
+    }
 
     listarCategorias = () => {
 
@@ -125,7 +123,7 @@ export default class dashboard extends Component {
                 }
             })
     }
-    
+
 
 
 
@@ -170,66 +168,58 @@ export default class dashboard extends Component {
                                 })}
                             </tbody>
                         </table>
-                        <div>
-                            <form onSubmit={this.CadastrarLancamento}>
-                                <h4>Cadastrar Lancamento</h4>
-                                <input type="text"
-                                    placeholder="Nome"
-                                    value={this.state.nome}
-                                    onChange={this.EstadoNome} />
-                                <input type="text"
-                                    placeholder="Sinopse"
-                                    value={this.state.sinopse}
-                                    onChange={this.Estadosinopse} />
-                                <input type="number"
-                                    placeholder="Duraçao"
-                                    value={this.state.duracaoMin}
-                                    onChange={this.EstadoduracaoMin} />
-                                <input type="text"
-                                    placeholder="aaaa-mm-dd"
-                                    value={this.state.dataDeLancamento}
-                                    onChange={this.EstadodataDeLancamento} 
-                                    />
-                               <select name="Categoria" onChange={this.EstadoCategoria}  >
-                                   <option selected disabled value="0">Selecione A categoria</option>
-                                   {
-                                       this.state.listaCategoria.map(element =>  
-                                        {
-                                            return(<option value={element.idCategoria}>{element.categoria}</option>)
-                                        })
-                                   }
-                               </select>
-                               <select name="Tipos" onChange={this.Estadotipo}  >
-                                   <option selected disabled value="0">Selecione o Tipos</option>
-                                   {
-                                       this.state.listaTipos.map(element =>  
-                                        {
-                                            return(<option value={element.idtipo}>{element.tipo}</option>)
-                                        })
-                                   }
-                               </select>
-                               <select name="Classificacao" onChange={this.EstadoClassificacao}  >
-                                   <option selected disabled value="0">Selecione A Classificacao</option>
-                                   {
-                                       this.state.listaClassificacao.map(element =>  
-                                        {
-                                            return(<option value={element.idClassificacao}>{element.classificacao1}</option>)
-                                        })
-                                   }
-                               </select>
 
-                                <button type="submit">Cadastrar</button>
-                            </form>
+                        <form onSubmit={this.CadastrarLancamento}>
+                            <h4>Cadastrar Lancamento</h4>
+                            <input type="text"
+                                placeholder="Nome"
+                                value={this.state.nome}
+                                onChange={this.EstadoNome} />
+                            <input type="text"
+                                placeholder="Sinopse"
+                                value={this.state.sinopse}
+                                onChange={this.Estadosinopse} />
+                            <input type="number"
+                                placeholder="Duraçao"
+                                value={this.state.duracaoMin}
+                                onChange={this.EstadoduracaoMin} />
+                            <input type="text"
+                                placeholder="aaaa-mm-dd"
+                                value={this.state.dataDeLancamento}
+                                onChange={this.EstadodataDeLancamento}
+                            />
+                            <select name="Categoria" onChange={this.EstadoCategoria}  >
+                                <option selected disabled value="0">Selecione A categoria</option>
+                                {
+                                    this.state.listaCategoria.map(element => {
+                                        return (<option value={element.idCategoria}>{element.categoria}</option>)
+                                    })
+                                }
+                            </select>
+                            <select name="Tipos" onChange={this.EstadoTipo}  >
+                                <option selected disabled value="0">Selecione o Tipos</option>
+                                {
+                                    this.state.listaTipos.map(element => {
+                                        return (<option value={element.idTipo}>{element.tipo}</option>)
+                                    })
+                                }
+                            </select>
+                            <select name="Classificacao" onChange={this.EstadoClassificacao}  >
+                                <option selected disabled value="0">Selecione A Classificacao</option>
+                                {
+                                    this.state.listaClassificacao.map(element => {
+                                        return (<option value={element.idClassificacao}>{element.classificacao1}</option>)
+                                    })
+                                }
+                            </select>
+
+                            <button type="submit">Cadastrar</button>
+                        </form>
+                    
+                                <div>
                         </div>
                     </div>
-
-
-
-
                 </div>
-
-
-
             </div>
         )
     }

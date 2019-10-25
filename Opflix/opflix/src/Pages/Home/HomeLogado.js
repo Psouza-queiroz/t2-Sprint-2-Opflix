@@ -16,7 +16,8 @@ import { Link } from "react-router-dom";
     <div className="App">
       <div className="nav">
         <ul>
-          <li>Lancamentos</li>
+          <Link to="/dashboardfilme
+          "><li>Lancamentos</li></Link>
         </ul>
     
     <img src={logo} width="100px" height="50%" />

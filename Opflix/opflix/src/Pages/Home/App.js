@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import logo from '../../assets/img/logo_opflix.png';
 import '../../assets/css/home.css'
 import './App.css';
-import dora from "../../assets/img/Filme_dora.jpg"
-import mato from "../../assets/img/eutimato.jpg"
+import dora from "../../assets/img/Filme_Logo.png"
+import mato from "../../assets/img/Filme_Logo.png"
 
 
 import { Link } from "react-router-dom";
